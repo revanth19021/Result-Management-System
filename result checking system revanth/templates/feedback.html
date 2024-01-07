@@ -1,0 +1,68 @@
+
+<label for="fname">Name:</label><br>
+<input type="text" id="fname" name="fname"><br>
+<label for="email">Email:</label><br>
+<input type="text" id="email" name="email"><br>
+<label for="subject">Subject:</label><br>
+<input type="text" id="subject" name="subject"><br>
+<label for="message">Message:</label><br>
+<textarea id="message" name="message" rows="4" cols="50"></textarea><br>
+<input type="submit" value="submit">
+
+<script>
+    const hamMenuBtn = document.querySelector('.header__main-ham-menu-cont')
+    const smallMenu = document.querySelector('.header__sm-menu')
+    const headerHamMenuBtn = document.querySelector('.header__main-ham-menu')
+    const headerHamMenuCloseBtn = document.querySelector(
+      '.header__main-ham-menu-close'
+    )
+    const headerSmallMenuLinks = document.querySelectorAll('.header__sm-menu-link')
+    
+    hamMenuBtn.addEventListener('click', () => {
+      if (smallMenu.classList.contains('header__sm-menu--active')) {
+        smallMenu.classList.remove('header__sm-menu--active')
+      } else {
+        smallMenu.classList.add('header__sm-menu--active')
+      }
+      if (headerHamMenuBtn.classList.contains('d-none')) {
+        headerHamMenuBtn.classList.remove('d-none')
+        headerHamMenuCloseBtn.classList.add('d-none')
+      } else {
+        headerHamMenuBtn.classList.add('d-none')
+        headerHamMenuCloseBtn.classList.remove('d-none')
+      }
+    })
+    
+    for (let i = 0; i < headerSmallMenuLinks.length; i++) {
+      headerSmallMenuLinks[i].addEventListener('click', () => {
+        smallMenu.classList.remove('header__sm-menu--active')
+        headerHamMenuBtn.classList.remove('d-none')
+        headerHamMenuCloseBtn.classList.add('d-none')
+      })
+    }
+    
+    // ---
+    const headerLogoConatiner = document.querySelector('.header__logo-container')
+    
+    headerLogoConatiner.addEventListener('click', () => {
+      location.href = 'feedback.html'
+    })
+    </script>
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxzOmptxzRhZROaAs_xTYJHdHEOXpDuoZhc3bE5U0lwJ9BfhQAse4ml-P-65ap4bcK8rQ/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const msg=document.getElementById("msg")
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        msg.innerHTML="message sent succesfully"
+        setTimeout(function(){
+          msg.innerHTML=""
+        },5000)
+        form.reset()
+    })
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>

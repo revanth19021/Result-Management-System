@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+</head>
+<body>
+    <h1>Student Details</h1>
+<table>
+        <tr>
+            <td>Name</td>
+            <td>password</td>
+            <td>username</td>
+            <td>phoneno</td>
+            <th>
+        {{student_details.name}}
+        {{student_details.password}}
+        {{student_details.username}}
+        {{student_details.phoneno}}
+            </th>
+        </tr>
+    </table>
+
+    <h2>Check Results</h2>
+    <form action="/check_results" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required>
+        <br>
+        <input type="submit" value="Check Results">
+    </form>
+</body>
+</html>
